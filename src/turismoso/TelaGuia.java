@@ -48,6 +48,12 @@ public class TelaGuia extends JFrame{
 		
 		// Configurações Botão Adicionar
 		addguia.setBounds(510, 5, 180, 40);
+		addguia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaAddGuia tag = new TelaAddGuia();
+				
+			}
+		});
 		jp.add(addguia);
 		
 		//Configurações Botão Editar

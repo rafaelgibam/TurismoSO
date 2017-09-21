@@ -37,24 +37,29 @@ public class TelaLugar extends JFrame{
 		
 		void criaTelaLugar(){
 			JPanel jp = new JPanel();
-			JButton addcli = new JButton("Adicionar");
-			JButton editcli = new JButton("Editar");
-			JButton apagacli = new JButton("Apagar");
+			JButton addlug = new JButton("Adicionar");
+			JButton editlug = new JButton("Editar");
+			JButton apagalug = new JButton("Apagar");
 			JButton voltar = new JButton("Voltar");
 			
 			jp.setLayout(null);
 			
 			// Configurações Botão Adicionar
-			addcli.setBounds(510, 5, 180, 40);
-			jp.add(addcli);
+			addlug.setBounds(510, 5, 180, 40);
+			addlug.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					TelaAddLugar tal = new TelaAddLugar();
+				}
+			});
+			jp.add(addlug);
 			
 			//Configurações Botão Editar
-			editcli.setBounds(510, 55, 180, 40);
-			jp.add(editcli);
+			editlug.setBounds(510, 55, 180, 40);
+			jp.add(editlug);
 			
 			// Configurações Botão Apagar
-			apagacli.setBounds(510, 105, 180, 40);
-			jp.add(apagacli);
+			apagalug.setBounds(510, 105, 180, 40);
+			jp.add(apagalug);
 			
 			// Configurações Botão Voltar
 			voltar.setBounds(510, 335, 180, 40);

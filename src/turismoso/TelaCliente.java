@@ -45,7 +45,8 @@ public class TelaCliente extends JFrame{
 			addcli.setBounds(510, 5, 180, 40);
 			addcli.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					criaTelaAddCliente();
+					TelaAddCliente tac = new TelaAddCliente();
+					
 				}
 			});
 			jp.add(addcli);
@@ -80,51 +81,6 @@ public class TelaCliente extends JFrame{
 			add(jp);
 		}
 		
-		void criaTelaAddCliente() {
-			JPanel jpaddcli = new JPanel();
-			JLabel lbnomecli = new JLabel("Nome:");
-			JTextField tfnomecli = new JTextField(30);
-			JLabel lbguia = new JLabel("Escolha o Guia:");
-			//JComboBox<String> comboguia = new JComboBox<String>();
-			//JLabel lblugar = new JLabel("Escolha o Lugar");
-			//JComboBox<String> combolugar = new JComboBox<String>();
-			//JLabel lbdataviagem = new JLabel("Data da Viagem:");
-			//JTextField tfdataviagem = new JTextField(30);
-			JButton voltaraddcli = new JButton("Voltar");
-			
-			
-			jpaddcli.setLayout(null);
-			
-			//Configurações Botão Adicionar
-			lbnomecli.setBounds(510, 5, 180, 40);
-			jpaddcli.add(lbnomecli);
-			
-			//Configurações Botão Editar
-			tfnomecli.setBounds(510, 55, 180, 40);
-			jpaddcli.add(tfnomecli);
-			
-			// Configurações Botão Apagar
-			lbguia.setBounds(510, 105, 180, 40);
-			jpaddcli.add(lbguia);
-			
-			// Configurações Botão Voltar Add cliente
-			voltaraddcli.setBounds(510, 335, 180, 40);
-			voltaraddcli.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					criaTelaCliente();
-				}
-			});
-			jpaddcli.add(voltaraddcli);
-			
-			
-			setTitle("TurismoSO v1.0 - Adicionar Cliente");
-			setVisible(true);
-			setSize(700, 408);
-			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-			setLocationRelativeTo(null);
-			setResizable(false);
-			add(jpaddcli);
-		}
 		
 		void fechaTelaCliente(){
 			this.dispose();
