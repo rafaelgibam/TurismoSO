@@ -5,13 +5,18 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 public class TelaGuia extends JFrame{
 
+	
+	/**
+	 * Version 1.0.0
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	String [] colunasguia = {"Guias","Preço Hora","Lugar"};
 	Object [][] dadosguia = {

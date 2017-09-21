@@ -8,6 +8,11 @@ import javax.swing.*;
 
 public class TelaCliente extends JFrame{
 		
+		/**
+	 * Version 1.0.0
+	 */
+	private static final long serialVersionUID = 1L;
+	
 		String [] colunascli = {"Clientes","Guias","Lugar","Data"};
 		Object [][] dadoscli = {
 				{"Cliente1","Guia1","Lugar1","12-02-2018"},

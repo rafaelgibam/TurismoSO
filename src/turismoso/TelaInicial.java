@@ -9,6 +9,11 @@ import javax.swing.*;
 
 public class TelaInicial extends JFrame {
 	
+	/**
+	 * Version 1.0.0
+	 */
+	private static final long serialVersionUID = 1L;
+
 	TelaInicial(){
 		JPanel jp = new JPanel();
 		JButton btnc = new JButton("Clientes");

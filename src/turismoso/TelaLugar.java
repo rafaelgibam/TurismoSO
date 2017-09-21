@@ -11,6 +11,11 @@ import javax.swing.JTable;
 
 public class TelaLugar extends JFrame{
 	
+	/**
+	 * Version 1.0.0
+	 */
+	private static final long serialVersionUID = 1L;
+	
 		String [] colunaslugar = {"Guias","Lugar"};
 		Object [][] dadoslugar = {
 				{"Lugar1","12-02-2018"},
