@@ -7,11 +7,6 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class TelaCliente extends JFrame{
-		
-		/**
-	 * Version 1.0.0
-	 */
-	private static final long serialVersionUID = 1L;
 	
 		String [] colunascli = {"Clientes","Guias","Lugar","Data"};
 		Object [][] dadoscli = {

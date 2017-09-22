@@ -27,15 +27,15 @@ public class TelaAddCliente extends JFrame {
 		jpaddcli.setLayout(null);
 		
 		//Configurações Botão Adicionar
-		lbnomecli.setBounds(510, 5, 180, 40);
+		lbnomecli.setBounds(20, 10, 180, 40);
 		jpaddcli.add(lbnomecli);
 		
 		//Configurações Botão Editar
-		tfnomecli.setBounds(510, 55, 180, 40);
+		tfnomecli.setBounds(20, 40, 200, 40);
 		jpaddcli.add(tfnomecli);
 		
 		// Configurações Botão Apagar
-		lbguia.setBounds(510, 105, 180, 40);
+		lbguia.setBounds(20, 80, 180, 40);
 		jpaddcli.add(lbguia);
 		
 		// Configurações Botão Voltar Add cliente
@@ -51,7 +51,7 @@ public class TelaAddCliente extends JFrame {
 		setTitle("TurismoSO v1.0 - Adicionar Cliente");
 		setVisible(true);
 		setSize(700, 408);
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		add(jpaddcli);
