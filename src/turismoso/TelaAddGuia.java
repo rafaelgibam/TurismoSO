@@ -12,31 +12,28 @@ import javax.swing.JTextField;
 public class TelaAddGuia extends JFrame{
 	
 	TelaAddGuia() {
-		JPanel jpaddcli = new JPanel();
-		JLabel lbnomecli = new JLabel("Nome:");
-		JTextField tfnomecli = new JTextField(30);
+		JPanel jpaddguia = new JPanel();
+		JLabel lbnomeguia = new JLabel("Nome:");
+		JTextField tfnomeguia = new JTextField(30);
 		JLabel lbguia = new JLabel("Escolha o Guia:");
-		//JComboBox<String> comboguia = new JComboBox<String>();
-		//JLabel lblugar = new JLabel("Escolha o Lugar");
-		//JComboBox<String> combolugar = new JComboBox<String>();
-		//JLabel lbdataviagem = new JLabel("Data da Viagem:");
-		//JTextField tfdataviagem = new JTextField(30);
+		JComboBox<String> comboguia = new JComboBox<String>();
+		
 		JButton voltaraddcli = new JButton("Voltar");
 		
 		
-		jpaddcli.setLayout(null);
+		jpaddguia.setLayout(null);
 		
 		//Configurações Botão Adicionar
-		lbnomecli.setBounds(510, 5, 180, 40);
-		jpaddcli.add(lbnomecli);
+		lbnomeguia.setBounds(510, 5, 180, 40);
+		jpaddguia.add(lbnomecli);
 		
 		//Configurações Botão Editar
-		tfnomecli.setBounds(510, 55, 180, 40);
-		jpaddcli.add(tfnomecli);
+		tfnomeguia.setBounds(510, 55, 180, 40);
+		jpaddguia.add(tfnomecli);
 		
 		// Configurações Botão Apagar
 		lbguia.setBounds(510, 105, 180, 40);
-		jpaddcli.add(lbguia);
+		jpaddguia.add(lbguia);
 		
 		// Configurações Botão Voltar Add cliente
 		voltaraddcli.setBounds(510, 335, 180, 40);
@@ -45,7 +42,7 @@ public class TelaAddGuia extends JFrame{
 				fechaTelaCliente();
 			}
 		});
-		jpaddcli.add(voltaraddcli);
+		jpaddguia.add(voltaraddcli);
 		
 		
 		setTitle("TurismoSO v1.0 - Adicionar Guia");
@@ -54,7 +51,7 @@ public class TelaAddGuia extends JFrame{
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		add(jpaddcli);
+		add(jpaddguia);
 	}
 	
 	void fechaTelaCliente(){
