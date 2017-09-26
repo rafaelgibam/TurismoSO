@@ -7,11 +7,10 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class TelaCliente extends JFrame{
-	
 		String [] colunascli = {"Clientes","Guias","Lugar","Data"};
 		Object [][] dadoscli = {
 				{"Cliente1","Guia1","Lugar1","12-02-2018"},
-				{"Cliente2","Guia2","Lugar2","12-04-2018"},
+				/*{"Cliente2","Guia2","Lugar2","12-04-2018"},
 				{"Cliente3","Guia3","Lugar3","12-08-2018"},
 				{"Cliente4","Guia4","Lugar4","12-03-2018"},
 				{"Cliente4","Guia4","Lugar4","12-03-2018"},
@@ -21,7 +20,7 @@ public class TelaCliente extends JFrame{
 				{"Cliente4","Guia4","Lugar4","12-03-2018"},
 				{"Cliente4","Guia4","Lugar4","12-03-2018"},
 				{"Cliente4","Guia4","Lugar4","12-03-2018"},
-				{"Cliente4","Guia4","Lugar4","12-03-2018"}
+				{"Cliente4","Guia4","Lugar4","12-03-2018"}*/
 		};	
 	
 		JTable tabela = new JTable(dadoscli,colunascli);
