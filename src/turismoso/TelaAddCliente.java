@@ -61,13 +61,13 @@ public class TelaAddCliente extends JFrame {
 		
 		
 		// Configurações Botão Add cliente
-				adicionarcli.setBounds(30, 310, 180, 40);
-				voltaraddcli.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						fechaTelaCliente();
-					}
-				});
-				jpaddcli.add(adicionarcli);
+		adicionarcli.setBounds(30, 310, 180, 40);
+		voltaraddcli.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fechaTelaCliente();
+			}
+		});
+		jpaddcli.add(adicionarcli);
 		
 		
 		

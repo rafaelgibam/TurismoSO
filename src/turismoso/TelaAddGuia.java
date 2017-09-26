@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -11,38 +12,61 @@ import javax.swing.JTextField;
 
 public class TelaAddGuia extends JFrame{
 	
+	String [] dadoscbg = new String[] {"guia1","guia2","guia3"};
+	
 	TelaAddGuia() {
 		JPanel jpaddguia = new JPanel();
 		JLabel lbnomeguia = new JLabel("Nome:");
 		JTextField tfnomeguia = new JTextField(30);
-		JLabel lbguia = new JLabel("Escolha o Guia:");
-		JComboBox<String> comboguia = new JComboBox<String>();
+		JLabel lbprecoguia = new JLabel("Preço por Hora");
+		JTextField tfprecoguia = new JTextField(30);
+		JLabel lblugarguia = new JLabel("Escolha um Lugar");
+		JComboBox<String> combolugar = new JComboBox<String>(dadoscbg);
 		
-		JButton voltaraddcli = new JButton("Voltar");
+		// Botões voltar e adicionar
+		JButton adicionarguia = new JButton("Adicionar");
+		JButton voltaraddguia = new JButton("Voltar");
 		
 		
 		jpaddguia.setLayout(null);
 		
-		//Configurações Botão Adicionar
-		lbnomeguia.setBounds(510, 5, 180, 40);
-		jpaddguia.add(lbnomecli);
+		//Label Nome
+		lbnomeguia.setBounds(30, 10, 280, 40);
+		jpaddguia.add(lbnomeguia);
 		
-		//Configurações Botão Editar
-		tfnomeguia.setBounds(510, 55, 180, 40);
-		jpaddguia.add(tfnomecli);
+		//Input de Nome
+		tfnomeguia.setBounds(30, 40, 280, 40);
+		jpaddguia.add(tfnomeguia);
 		
-		// Configurações Botão Apagar
-		lbguia.setBounds(510, 105, 180, 40);
-		jpaddguia.add(lbguia);
+		// Label preco guia
+		lbprecoguia.setBounds(380, 10, 280, 40);
+		jpaddguia.add(lbprecoguia);
+		tfprecoguia.setBounds(380, 40, 280, 40);
+		jpaddguia.add(tfprecoguia);
 		
-		// Configurações Botão Voltar Add cliente
-		voltaraddcli.setBounds(510, 335, 180, 40);
-		voltaraddcli.addActionListener(new ActionListener() {
+		// Label Seleciona Lugar com ComboBox
+		lblugarguia.setBounds(30, 120, 280, 40);
+		jpaddguia.add(lblugarguia);
+		combolugar.setBounds(30, 150, 280, 40);
+		jpaddguia.add(combolugar);
+		
+		adicionarguia.setBounds(30, 310, 180, 40);
+		adicionarguia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				fechaTelaCliente();
 			}
 		});
-		jpaddguia.add(voltaraddcli);
+		jpaddguia.add(adicionarguia);
+		
+		
+		// Configurações Botão Voltar Add cliente
+		voltaraddguia.setBounds(480, 310, 180, 40);
+		voltaraddguia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fechaTelaCliente();
+			}
+		});
+		jpaddguia.add(voltaraddguia);
 		
 		
 		setTitle("TurismoSO v1.0 - Adicionar Guia");
