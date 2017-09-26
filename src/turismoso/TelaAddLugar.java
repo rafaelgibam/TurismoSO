@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -11,41 +12,62 @@ import javax.swing.JTextField;
 
 public class TelaAddLugar extends JFrame {
 	
+	String [] dadoscbdv = new String[] {"13-08-2018","13-05-2019","15-01-2018"};
+	
 	TelaAddLugar() {
-		JPanel jpaddcli = new JPanel();
-		JLabel lbnomecli = new JLabel("Nome:");
-		JTextField tfnomecli = new JTextField(30);
-		JLabel lbguia = new JLabel("Escolha o Guia:");
-		//JComboBox<String> comboguia = new JComboBox<String>();
-		//JLabel lblugar = new JLabel("Escolha o Lugar");
-		//JComboBox<String> combolugar = new JComboBox<String>();
-		//JLabel lbdataviagem = new JLabel("Data da Viagem:");
-		//JTextField tfdataviagem = new JTextField(30);
-		JButton voltaraddcli = new JButton("Voltar");
+		JPanel jpaddlugar = new JPanel();
+		JLabel lbnomelugar = new JLabel("Nome:");
+		JTextField tfnomelugar = new JTextField(30);
+		JLabel lbendereco = new JLabel("Endereço");
+		JTextField tfendereco = new JTextField(30);
+		JLabel lbdata = new JLabel("Data Disponivel");
+		JComboBox<String> combodata = new JComboBox<String>(dadoscbdv);
 		
 		
-		jpaddcli.setLayout(null);
+		// Botões voltar e adicionar
+		JButton adicionarguia = new JButton("Adicionar");
+		JButton voltaraddguia = new JButton("Voltar");
 		
-		//Configurações Botão Adicionar
-		lbnomecli.setBounds(510, 5, 180, 40);
-		jpaddcli.add(lbnomecli);
 		
-		//Configurações Botão Editar
-		tfnomecli.setBounds(510, 55, 180, 40);
-		jpaddcli.add(tfnomecli);
+		jpaddlugar.setLayout(null);
 		
-		// Configurações Botão Apagar
-		lbguia.setBounds(510, 105, 180, 40);
-		jpaddcli.add(lbguia);
+		//Label Nome
+		lbnomelugar.setBounds(30, 10, 280, 40);
+		jpaddlugar.add(lbnomelugar);
 		
-		// Configurações Botão Voltar Add cliente
-		voltaraddcli.setBounds(510, 335, 180, 40);
-		voltaraddcli.addActionListener(new ActionListener() {
+		//Input de Nome
+		tfnomelugar.setBounds(30, 40, 280, 40);
+		jpaddlugar.add(tfnomelugar);
+		
+		// Label preco guia
+		lbendereco.setBounds(380, 10, 280, 40);
+		jpaddlugar.add(lbendereco);
+		tfendereco.setBounds(380, 40, 280, 40);
+		jpaddlugar.add(tfendereco);
+		
+		// Label Seleciona Lugar com ComboBox
+		lbdata.setBounds(30, 120, 280, 40);
+		jpaddlugar.add(lbdata);
+		combodata.setBounds(30, 150, 280, 40);
+		jpaddlugar.add(combodata);
+		
+		adicionarguia.setBounds(30, 310, 180, 40);
+		adicionarguia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				fechaTelaCliente();
 			}
 		});
-		jpaddcli.add(voltaraddcli);
+		jpaddlugar.add(adicionarguia);
+		
+		
+		// Configurações Botão Voltar Add cliente
+		voltaraddguia.setBounds(480, 310, 180, 40);
+		voltaraddguia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fechaTelaCliente();
+			}
+		});
+		jpaddlugar.add(voltaraddguia);
 		
 		
 		setTitle("TurismoSO v1.0 - Adicionar Cliente");
@@ -54,7 +76,7 @@ public class TelaAddLugar extends JFrame {
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		add(jpaddcli);
+		add(jpaddlugar);
 	}
 	
 	void fechaTelaCliente(){
