@@ -56,6 +56,11 @@ public class TelaInicial extends JFrame {
 		
 		// Configurações btnRelatorio
 		btnr.setBounds(35, 200, 200, 147);
+		btnr.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Relatorio();
+			}
+		});
 		jp.add(btnr);
 		
 		// Configurações btnSuporte
