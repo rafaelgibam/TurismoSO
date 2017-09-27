@@ -58,7 +58,7 @@ public class TelaInicial extends JFrame {
 		btnr.setBounds(35, 200, 200, 147);
 		btnr.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new Relatorio();
+				new TelaRelatorio();
 			}
 		});
 		jp.add(btnr);
