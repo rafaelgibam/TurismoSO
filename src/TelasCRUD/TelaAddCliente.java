@@ -1,4 +1,4 @@
-package turismoso;
+package TelasCRUD;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +16,7 @@ public class TelaAddCliente extends JFrame {
 	String [] dadoscbl = new String[] {"lugar1","lugar2","lugar3"};
 	String [] dadoscbdv = new String[] {"13-08-2018","13-05-2019","15-01-2018"};
 	
-	TelaAddCliente() {
+	public TelaAddCliente() {
 		JPanel jpaddcli = new JPanel();
 		JLabel lbnomecli = new JLabel("Nome:");
 		JTextField tfnomecli = new JTextField(30);

@@ -1,4 +1,4 @@
-package turismoso;
+package Telas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
+import TelasCRUD.TelaAddLugar;
 
 public class TelaLugar extends JFrame{
 	
@@ -48,7 +50,7 @@ public class TelaLugar extends JFrame{
 			addlug.setBounds(510, 5, 180, 40);
 			addlug.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					TelaAddLugar tal = new TelaAddLugar();
+					new TelaAddLugar();
 				}
 			});
 			jp.add(addlug);

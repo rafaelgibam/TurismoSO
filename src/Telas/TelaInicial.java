@@ -1,9 +1,11 @@
-package turismoso;
+package Telas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+
+import turismoso.Sair;
 
 
 
@@ -14,7 +16,7 @@ public class TelaInicial extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	TelaInicial(){
+	public TelaInicial(){
 		JPanel jp = new JPanel();
 		JButton btnc = new JButton("Clientes");
 		JButton btng = new JButton("Guias");

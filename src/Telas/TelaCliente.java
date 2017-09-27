@@ -1,4 +1,4 @@
-package turismoso;
+package Telas;
 
 
 import java.awt.event.ActionEvent;
@@ -6,7 +6,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import TelasCRUD.TelaAddCliente;
+
 public class TelaCliente extends JFrame{
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 		String [] colunascli = {"Clientes","Guias","Lugar","Data"};
 		Object [][] dadoscli = {
 				{"Cliente1","Guia1","Lugar1","12-02-2018"},
@@ -39,7 +46,7 @@ public class TelaCliente extends JFrame{
 			addcli.setBounds(510, 5, 180, 40);
 			addcli.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					TelaAddCliente tac = new TelaAddCliente();
+					new TelaAddCliente();
 					
 				}
 			});

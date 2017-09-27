@@ -1,4 +1,4 @@
-package turismoso;
+package Telas;
 
 public class Suporte {
 

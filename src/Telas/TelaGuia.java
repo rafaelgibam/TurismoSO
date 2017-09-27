@@ -1,4 +1,4 @@
-package turismoso;
+package Telas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
+import TelasCRUD.TelaAddGuia;
 
 public class TelaGuia extends JFrame{
 
@@ -50,7 +52,7 @@ public class TelaGuia extends JFrame{
 		addguia.setBounds(510, 5, 180, 40);
 		addguia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaAddGuia tag = new TelaAddGuia();
+				new TelaAddGuia();
 				
 			}
 		});
