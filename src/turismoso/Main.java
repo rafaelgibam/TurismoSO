@@ -1,12 +1,12 @@
 package turismoso;
 
-import Telas.TelaInicial;
-import TelasCRUD.TelaExcluirCliente;
+import TelasCRUD.TelaEditGuia;
+
 
 public class Main {
 
 	public static void main(String[] args) {
-		new TelaExcluirCliente();
+		new TelaEditGuia();
 
 	}
 
