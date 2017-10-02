@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import TelasCRUD.TelaAddCliente;
+import TelasCRUD.TelaEditCliente;
+import TelasCRUD.TelaExcluirCliente;
 
 public class TelaCliente extends JFrame{
 		/**
@@ -54,10 +56,20 @@ public class TelaCliente extends JFrame{
 			
 			//Configurações Botão Editar
 			editcli.setBounds(510, 55, 180, 40);
+			editcli.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					new TelaEditCliente();
+				}
+			});
 			jp.add(editcli);
 			
 			// Configurações Botão Apagar
 			apagacli.setBounds(510, 105, 180, 40);
+			apagacli.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					new TelaExcluirCliente();
+				}
+			});
 			jp.add(apagacli);
 			
 			// Configurações Botão Voltar

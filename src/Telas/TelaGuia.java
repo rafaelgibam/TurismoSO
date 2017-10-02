@@ -11,6 +11,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import TelasCRUD.TelaAddGuia;
+import TelasCRUD.TelaEditCliente;
+import TelasCRUD.TelaEditGuia;
+import TelasCRUD.TelaExcluirCliente;
+import TelasCRUD.TelaExcluirGuia;
 
 public class TelaGuia extends JFrame{
 
@@ -60,10 +64,20 @@ public class TelaGuia extends JFrame{
 		
 		//Configurações Botão Editar
 		editguia.setBounds(510, 55, 180, 40);
+		editguia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new TelaEditGuia();
+			}
+		});
 		jp.add(editguia);
 		
 		// Configurações Botão Apagar
 		apagaguia.setBounds(510, 105, 180, 40);
+		apagaguia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new TelaExcluirGuia();
+			}
+		});
 		jp.add(apagaguia);
 		
 		// Configurações Botão Voltar

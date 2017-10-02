@@ -10,6 +10,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import TelasCRUD.TelaAddLugar;
+import TelasCRUD.TelaEditGuia;
+import TelasCRUD.TelaEditLugar;
+import TelasCRUD.TelaExcluirGuia;
+import TelasCRUD.TelaExcluirLugar;
 
 public class TelaLugar extends JFrame{
 	
@@ -57,10 +61,20 @@ public class TelaLugar extends JFrame{
 			
 			//Configurações Botão Editar
 			editlug.setBounds(510, 55, 180, 40);
+			editlug.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					new TelaEditLugar();
+				}
+			});
 			jp.add(editlug);
 			
 			// Configurações Botão Apagar
 			apagalug.setBounds(510, 105, 180, 40);
+			apagalug.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					new TelaExcluirLugar();
+				}
+			});
 			jp.add(apagalug);
 			
 			// Configurações Botão Voltar

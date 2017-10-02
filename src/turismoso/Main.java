@@ -1,14 +1,11 @@
 package turismoso;
 
-import TelasCRUD.TelaEditGuia;
-import TelasCRUD.TelaEditLugar;
-import TelasCRUD.TelaExcluirGuia;
-
+import Telas.TelaInicial;
 
 public class Main {
 
 	public static void main(String[] args) {
-		new TelaEditLugar();
+		new TelaInicial();
 
 	}
 
