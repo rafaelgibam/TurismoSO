@@ -12,27 +12,39 @@ import javax.swing.JTextField;
 
 public class TelaEditCliente extends JFrame {
 	
-	String [] dadoscbg = new String[] {"guia1","guia2","guia3"};
-	String [] dadoscbl = new String[] {"lugar1","lugar2","lugar3"};
-	String [] dadoscbdv = new String[] {"13-08-2018","13-05-2019","15-01-2018"};
-	
-	String nome ="MEXENDO COM GIT";
+	String [] dadoscli = new String[] {"cliente1","cliente2","cliente3"};
 	
 	public TelaEditCliente() {
-		JPanel jpaddcli = new JPanel();
-		JLabel lbnomecli = new JLabel("Nome:");
-		JTextField tfnomecli = new JTextField(30);
-		JLabel lbguia = new JLabel("Escolha o Guia:");
-		JComboBox<String> comboguia = new JComboBox<String>(dadoscbg);
-		JLabel lblugar = new JLabel("Escolha o Lugar");
-		JComboBox<String> combolugar = new JComboBox<String>(dadoscbl);
-		JLabel lbdataviagem = new JLabel("Data da Viagem:");
-		JComboBox<String> combodataviagem = new JComboBox<String>(dadoscbdv);
-		JButton adicionarcli = new JButton("Editar");
+		JPanel jpeditcli = new JPanel();
+		JLabel lbselecli = new JLabel("Selecione o cliente para editar");
+		JComboBox<String> combocli = new JComboBox<String>(dadoscli);
+		JTextField tfeditcli = new JTextField(20);
+		JButton editcli = new JButton("Editar");
 		JButton voltaraddcli = new JButton("Voltar");
 		
-		jpaddcli.setLayout(null);
+		jpeditcli.setLayout(null);
 		
+		
+		// Configurações lbselecli
+		lbselecli.setBounds(260, 10, 400, 30);
+		jpeditcli.add(lbselecli);
+		
+		// Configurações combobox
+		combocli.setBounds(150,50,400,40);
+		jpeditcli.add(combocli);
+		
+		// Configurações tfeditcli
+		tfeditcli.setBounds(150, 170, 400, 40);
+		jpeditcli.add(tfeditcli);
+		
+		// Configurações Botão editar cliente
+		editcli.setBounds(40, 310, 180, 40);
+		editcli.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fechaTelaCliente();
+			}
+		});
+		jpeditcli.add(editcli);
 		
 		// Configurações Botão Voltar Add cliente
 		voltaraddcli.setBounds(480, 310, 180, 40);
@@ -41,7 +53,7 @@ public class TelaEditCliente extends JFrame {
 				fechaTelaCliente();
 			}
 		});
-		jpaddcli.add(voltaraddcli);
+		jpeditcli.add(voltaraddcli);
 		
 		
 		setTitle("TurismoSO v1.0 - Editar Cliente");
@@ -50,7 +62,7 @@ public class TelaEditCliente extends JFrame {
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		add(jpaddcli);
+		add(jpeditcli);
 	}
 	
 	void fechaTelaCliente(){
