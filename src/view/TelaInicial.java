@@ -1,11 +1,11 @@
-package Telas;
+package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import turismoso.Sair;
+import control.Sair;
 
 
 

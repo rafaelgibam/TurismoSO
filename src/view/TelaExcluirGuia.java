@@ -1,4 +1,4 @@
-package TelasCRUD;
+package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,32 +10,28 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class TelaEditGuia extends JFrame {
+public class TelaExcluirGuia extends JFrame {
 	
 	String [] dadosguia = new String[] {"guia1","guia2","guia3"};
 	
-	public TelaEditGuia() {
-		JPanel jpeditguia = new JPanel();
-		JLabel lbseleguia = new JLabel("Selecione o guia para editar");
+	public TelaExcluirGuia() {
+		JPanel jpapagaguia = new JPanel();
+		JLabel lbseleguia = new JLabel("Selecione o guia para apagar");
 		JComboBox<String> comboguia = new JComboBox<String>(dadosguia);
-		JTextField tfeditguia = new JTextField(20);
-		JButton editguia = new JButton("Editar");
+		JButton editguia = new JButton("Apagar");
 		JButton voltaraddcli = new JButton("Voltar");
 		
-		jpeditguia.setLayout(null);
+		jpapagaguia.setLayout(null);
 		
 		
 		// Configurações lbselecli
-		lbseleguia.setBounds(260, 10, 400, 30);
-		jpeditguia.add(lbseleguia);
+		lbseleguia.setBounds(260, 80, 400, 30);
+		jpapagaguia.add(lbseleguia);
 		
 		// Configurações combobox
-		comboguia.setBounds(150,50,400,40);
-		jpeditguia.add(comboguia);
+		comboguia.setBounds(150,120,400,40);
+		jpapagaguia.add(comboguia);
 		
-		// Configurações tfeditcli
-		tfeditguia.setBounds(150, 170, 400, 40);
-		jpeditguia.add(tfeditguia);
 		
 		// Configurações Botão editar cliente
 		editguia.setBounds(40, 310, 180, 40);
@@ -44,7 +40,7 @@ public class TelaEditGuia extends JFrame {
 				fechaTelaCliente();
 			}
 		});
-		jpeditguia.add(editguia);
+		jpapagaguia.add(editguia);
 		
 		// Configurações Botão Voltar Add cliente
 		voltaraddcli.setBounds(480, 310, 180, 40);
@@ -53,16 +49,16 @@ public class TelaEditGuia extends JFrame {
 				fechaTelaCliente();
 			}
 		});
-		jpeditguia.add(voltaraddcli);
+		jpapagaguia.add(voltaraddcli);
 		
 		
-		setTitle("TurismoSO v1.0 - Editar Guia");
+		setTitle("TurismoSO v1.0 - Apagar Guia");
 		setVisible(true);
 		setSize(700, 408);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		add(jpeditguia);
+		add(jpapagaguia);
 	}
 	
 	void fechaTelaCliente(){

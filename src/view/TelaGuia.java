@@ -1,4 +1,4 @@
-package Telas;
+package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,12 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
-import TelasCRUD.TelaAddGuia;
-import TelasCRUD.TelaEditCliente;
-import TelasCRUD.TelaEditGuia;
-import TelasCRUD.TelaExcluirCliente;
-import TelasCRUD.TelaExcluirGuia;
 
 public class TelaGuia extends JFrame{
 

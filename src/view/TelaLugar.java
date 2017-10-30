@@ -1,4 +1,4 @@
-package Telas;
+package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,12 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
-import TelasCRUD.TelaAddLugar;
-import TelasCRUD.TelaEditGuia;
-import TelasCRUD.TelaEditLugar;
-import TelasCRUD.TelaExcluirGuia;
-import TelasCRUD.TelaExcluirLugar;
 
 public class TelaLugar extends JFrame{
 	

@@ -1,4 +1,4 @@
-package Telas;
+package view;
 
 public class Suporte {
 

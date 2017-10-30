@@ -1,4 +1,4 @@
-package TelasCRUD;
+package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,37 +10,41 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class TelaExcluirLugar extends JFrame {
+public class TelaEditGuia extends JFrame {
 	
-	String [] dadoslugar = new String[] {"lugar1","lugar2","lugar3"};
+	String [] dadosguia = new String[] {"guia1","guia2","guia3"};
 	
-	public TelaExcluirLugar() {
-		JPanel jpapagalugar = new JPanel();
-		JLabel lbselec = new JLabel("Selecione o lugar para apagar");
-		JComboBox<String> combolugar = new JComboBox<String>(dadoslugar);
-		JButton editlugar = new JButton("Apagar");
+	public TelaEditGuia() {
+		JPanel jpeditguia = new JPanel();
+		JLabel lbseleguia = new JLabel("Selecione o guia para editar");
+		JComboBox<String> comboguia = new JComboBox<String>(dadosguia);
+		JTextField tfeditguia = new JTextField(20);
+		JButton editguia = new JButton("Editar");
 		JButton voltaraddcli = new JButton("Voltar");
 		
-		jpapagalugar.setLayout(null);
+		jpeditguia.setLayout(null);
 		
 		
 		// Configurações lbselecli
-		lbselec.setBounds(260, 80, 400, 30);
-		jpapagalugar.add(lbselec);
+		lbseleguia.setBounds(260, 10, 400, 30);
+		jpeditguia.add(lbseleguia);
 		
 		// Configurações combobox
-		combolugar.setBounds(150,120,400,40);
-		jpapagalugar.add(combolugar);
+		comboguia.setBounds(150,50,400,40);
+		jpeditguia.add(comboguia);
 		
+		// Configurações tfeditcli
+		tfeditguia.setBounds(150, 170, 400, 40);
+		jpeditguia.add(tfeditguia);
 		
 		// Configurações Botão editar cliente
-		editlugar.setBounds(40, 310, 180, 40);
-		editlugar.addActionListener(new ActionListener() {
+		editguia.setBounds(40, 310, 180, 40);
+		editguia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				fechaTelaCliente();
 			}
 		});
-		jpapagalugar.add(editlugar);
+		jpeditguia.add(editguia);
 		
 		// Configurações Botão Voltar Add cliente
 		voltaraddcli.setBounds(480, 310, 180, 40);
@@ -49,16 +53,16 @@ public class TelaExcluirLugar extends JFrame {
 				fechaTelaCliente();
 			}
 		});
-		jpapagalugar.add(voltaraddcli);
+		jpeditguia.add(voltaraddcli);
 		
 		
-		setTitle("TurismoSO v1.0 - Apagar Lugar");
+		setTitle("TurismoSO v1.0 - Editar Guia");
 		setVisible(true);
 		setSize(700, 408);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		add(jpapagalugar);
+		add(jpeditguia);
 	}
 	
 	void fechaTelaCliente(){

@@ -1,6 +1,6 @@
-package turismoso;
+package control;
 
-import Telas.TelaInicial;
+import view.TelaInicial;
 
 public class Main {
 

@@ -1,4 +1,4 @@
-package turismoso;
+package control;
 
 public class Lugar {
 	

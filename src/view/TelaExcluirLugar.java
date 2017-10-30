@@ -1,4 +1,4 @@
-package TelasCRUD;
+package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,37 +10,37 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class TelaExcluirCliente extends JFrame {
+public class TelaExcluirLugar extends JFrame {
 	
-	String [] dadoscli = new String[] {"cliente1","cliente2","cliente3"};
+	String [] dadoslugar = new String[] {"lugar1","lugar2","lugar3"};
 	
-	public TelaExcluirCliente() {
-		JPanel jpapagacli = new JPanel();
-		JLabel lbselecli = new JLabel("Selecione o cliente para apagar");
-		JComboBox<String> combocli = new JComboBox<String>(dadoscli);
-		JButton editcli = new JButton("Apagar");
+	public TelaExcluirLugar() {
+		JPanel jpapagalugar = new JPanel();
+		JLabel lbselec = new JLabel("Selecione o lugar para apagar");
+		JComboBox<String> combolugar = new JComboBox<String>(dadoslugar);
+		JButton editlugar = new JButton("Apagar");
 		JButton voltaraddcli = new JButton("Voltar");
 		
-		jpapagacli.setLayout(null);
+		jpapagalugar.setLayout(null);
 		
 		
 		// Configurações lbselecli
-		lbselecli.setBounds(260, 80, 400, 30);
-		jpapagacli.add(lbselecli);
+		lbselec.setBounds(260, 80, 400, 30);
+		jpapagalugar.add(lbselec);
 		
 		// Configurações combobox
-		combocli.setBounds(150,120,400,40);
-		jpapagacli.add(combocli);
+		combolugar.setBounds(150,120,400,40);
+		jpapagalugar.add(combolugar);
 		
 		
 		// Configurações Botão editar cliente
-		editcli.setBounds(40, 310, 180, 40);
-		editcli.addActionListener(new ActionListener() {
+		editlugar.setBounds(40, 310, 180, 40);
+		editlugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				fechaTelaCliente();
 			}
 		});
-		jpapagacli.add(editcli);
+		jpapagalugar.add(editlugar);
 		
 		// Configurações Botão Voltar Add cliente
 		voltaraddcli.setBounds(480, 310, 180, 40);
@@ -49,16 +49,16 @@ public class TelaExcluirCliente extends JFrame {
 				fechaTelaCliente();
 			}
 		});
-		jpapagacli.add(voltaraddcli);
+		jpapagalugar.add(voltaraddcli);
 		
 		
-		setTitle("TurismoSO v1.0 - Apagar Cliente");
+		setTitle("TurismoSO v1.0 - Apagar Lugar");
 		setVisible(true);
 		setSize(700, 408);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		add(jpapagacli);
+		add(jpapagalugar);
 	}
 	
 	void fechaTelaCliente(){

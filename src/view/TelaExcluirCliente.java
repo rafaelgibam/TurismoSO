@@ -1,4 +1,4 @@
-package TelasCRUD;
+package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,41 +10,37 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class TelaEditLugar extends JFrame {
+public class TelaExcluirCliente extends JFrame {
 	
-	String [] dadoslugar = new String[] {"lugar1","lugar2","lugar3"};
+	String [] dadoscli = new String[] {"cliente1","cliente2","cliente3"};
 	
-	public TelaEditLugar() {
-		JPanel jpeditlugar = new JPanel();
-		JLabel lbselecli = new JLabel("Selecione o lugar para editar");
-		JComboBox<String> combolugar = new JComboBox<String>(dadoslugar);
-		JTextField tfeditlugar = new JTextField(20);
-		JButton editlugar = new JButton("Editar");
+	public TelaExcluirCliente() {
+		JPanel jpapagacli = new JPanel();
+		JLabel lbselecli = new JLabel("Selecione o cliente para apagar");
+		JComboBox<String> combocli = new JComboBox<String>(dadoscli);
+		JButton editcli = new JButton("Apagar");
 		JButton voltaraddcli = new JButton("Voltar");
 		
-		jpeditlugar.setLayout(null);
+		jpapagacli.setLayout(null);
 		
 		
 		// Configurações lbselecli
-		lbselecli.setBounds(260, 10, 400, 30);
-		jpeditlugar.add(lbselecli);
+		lbselecli.setBounds(260, 80, 400, 30);
+		jpapagacli.add(lbselecli);
 		
 		// Configurações combobox
-		combolugar.setBounds(150,50,400,40);
-		jpeditlugar.add(combolugar);
+		combocli.setBounds(150,120,400,40);
+		jpapagacli.add(combocli);
 		
-		// Configurações tfeditcli
-		tfeditlugar.setBounds(150, 170, 400, 40);
-		jpeditlugar.add(tfeditlugar);
 		
 		// Configurações Botão editar cliente
-		editlugar.setBounds(40, 310, 180, 40);
-		editlugar.addActionListener(new ActionListener() {
+		editcli.setBounds(40, 310, 180, 40);
+		editcli.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				fechaTelaCliente();
 			}
 		});
-		jpeditlugar.add(editlugar);
+		jpapagacli.add(editcli);
 		
 		// Configurações Botão Voltar Add cliente
 		voltaraddcli.setBounds(480, 310, 180, 40);
@@ -53,16 +49,16 @@ public class TelaEditLugar extends JFrame {
 				fechaTelaCliente();
 			}
 		});
-		jpeditlugar.add(voltaraddcli);
+		jpapagacli.add(voltaraddcli);
 		
 		
-		setTitle("TurismoSO v1.0 - Editar Lugar");
+		setTitle("TurismoSO v1.0 - Apagar Cliente");
 		setVisible(true);
 		setSize(700, 408);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		add(jpeditlugar);
+		add(jpapagacli);
 	}
 	
 	void fechaTelaCliente(){

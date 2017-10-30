@@ -1,4 +1,4 @@
-package Telas;
+package view;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;

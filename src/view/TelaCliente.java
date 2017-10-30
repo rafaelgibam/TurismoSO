@@ -1,14 +1,10 @@
-package Telas;
+package view;
 
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-
-import TelasCRUD.TelaAddCliente;
-import TelasCRUD.TelaEditCliente;
-import TelasCRUD.TelaExcluirCliente;
 
 public class TelaCliente extends JFrame{
 		/**
