@@ -1,8 +1,17 @@
 package Models;
 
 public class GuiaModel {
+	private int id;
 	private String nome;
 	private double valorhora;
+
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	public String getNome() {
 		return nome;
@@ -13,6 +22,7 @@ public class GuiaModel {
 	public double getValorHora() {
 		return valorhora;
 	}
+	
 	public void setValorHora(double valorhora) {
 		this.valorhora = valorhora;
 	}

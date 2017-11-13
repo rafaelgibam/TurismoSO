@@ -1,11 +1,20 @@
 package Models;
 
-import com.mysql.fabric.xmlrpc.base.Data;
+import java.sql.Date;
 
 public class LugarModel {
+	
+	private int id;
 	private String nome;
 	private String endereco;
-	private Data dataDisponivel;
+	private Date dataDisponivel;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	public String getNome() {
 		return nome;
@@ -19,11 +28,12 @@ public class LugarModel {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	public Data getDataDisponivel() {
+	
+	public Date getDataDisponivel() {
 		return dataDisponivel;
 	}
-	public void setDataDisponivel(Data dataDisponivel) {
-		this.dataDisponivel = dataDisponivel;
+	public void setDataDisponivel(Date date) {
+		this.dataDisponivel = date;
 	}
 	
 }
