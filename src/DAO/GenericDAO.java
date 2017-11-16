@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class GenericDAO {
+public abstract class GenericDAO {
 	
 	private Connection connection;
 
@@ -13,7 +13,7 @@ public class GenericDAO {
 		this.connection = ConnectionFactory.getConnection();
 
 	}
-
+	
 	protected Connection getConnection() {
 
 		return connection;
@@ -23,15 +23,15 @@ public class GenericDAO {
 	protected void salvar(String insertSQL, Object... parametros) throws SQLException {
 
 		PreparedStatement pstmt = getConnection().prepareStatement(insertSQL);
-
-		for (int i = 0; i < parametros.length; i++) {
+		
+		for (int i = 0; i < parametros.length; i++) {	
 
 			pstmt.setObject(i + 1, parametros[i]);
 
 		}
-
+		
 		pstmt.execute();
-
+		
 		pstmt.close();
 
 	}
@@ -49,7 +49,7 @@ public class GenericDAO {
 		pstmt.setObject(parametros.length+1,id);
 		
 		pstmt.execute();
-		
+		System.out.println("Alterou!!!");
 		pstmt.close();
 	
 	}
@@ -61,7 +61,7 @@ public class GenericDAO {
 		pstmt.setObject(parametros.length+1,id);
 
 		pstmt.execute();
-
+		System.out.println("Apagou!!!");
 		pstmt.close();
 			
 	}

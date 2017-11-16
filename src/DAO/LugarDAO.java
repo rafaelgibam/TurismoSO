@@ -10,7 +10,7 @@ import Models.LugarModel;
 
 public class LugarDAO extends GenericDAO {
 
-	protected LugarDAO() throws SQLException {
+	public LugarDAO() throws SQLException {
 		// Herda construtor da super classe
 		super();
 

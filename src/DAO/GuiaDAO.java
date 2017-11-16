@@ -9,7 +9,7 @@ import Models.GuiaModel;
 
 public class GuiaDAO extends GenericDAO {
 
-	protected GuiaDAO() throws SQLException {
+	public GuiaDAO() throws SQLException {
 		// Herda construtor da super classe
 		super();
 

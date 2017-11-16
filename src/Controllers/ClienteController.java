@@ -5,8 +5,7 @@ import java.sql.SQLException;
 import DAO.ClienteDAO;
 import Models.ClienteModel;
 
-public class ClienteController{
-	
+public class ClienteController {
 	
 	public void cadastraCliente(String nome) throws SQLException {
 		ClienteModel cliente = new ClienteModel();
@@ -27,10 +26,18 @@ public class ClienteController{
 	
 	public void apagarCliente(int id) throws SQLException {
 		ClienteModel cliente = new ClienteModel();
-		
+			
 		cliente.setId(id);
 		
 		new ClienteDAO().apagar(cliente);
+	}
+	
+	public void listarCliente() throws SQLException {
+		
+		ClienteDAO cliente = new ClienteDAO();
+		
+		cliente.listarCliente();
+		
 	}
 	
 	

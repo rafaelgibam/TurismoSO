@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 public class ConnectionFactory {
 	
 	public static Connection getConnection() throws SQLException{
@@ -13,13 +15,12 @@ public class ConnectionFactory {
 		Connection conexao = null;
 		
 		try {
-			conexao = DriverManager.getConnection("jdbc:mysql://localhost/turismoso","root","");
-			System.out.println("Conexao Aberta!");
+			conexao = DriverManager.getConnection("jdbc:mysql://localhost/turismoso","root","root");
+			System.out.println("Conexão com o banco bem sucedida!");
+			
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
-		}finally {
-			conexao.close();
 		}
 		
 		return conexao;
