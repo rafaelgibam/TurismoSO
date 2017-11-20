@@ -36,8 +36,6 @@ public class ClienteController {
 		
 		ClienteDAO cliente = new ClienteDAO();
 		
-		cliente.listarCliente();
-		
 	}
 	
 	

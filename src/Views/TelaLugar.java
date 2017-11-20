@@ -2,15 +2,20 @@ package Views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import Controllers.LugarController;
+import DAO.LugarDAO;
+import Models.LugarModel;
 
 public class TelaLugar extends JFrame{
 	
@@ -18,67 +23,72 @@ public class TelaLugar extends JFrame{
 	 * Version 1.0.0
 	 */
 	private static final long serialVersionUID = 1L;
-	
-		String [] dadoscbdv = new String[] {"13-08-2018","13-05-2019","15-01-2018"};
-		String [] colunaslugar = {"Guias","Lugar"};
-		Object [][] dadoslugar = {
-				{"Lugar1","12-02-2018"},
-				{"Lugar2","12-04-2018"},
-				{"Lugar3","12-08-2018"},
-				{"Lugar4","12-03-2018"},
-				{"Lugar4","12-03-2018"},
-				{"Lugar4","12-03-2018"},
-				{"Lugar4","12-03-2018"},
-				{"Lugar4","12-03-2018"},
-				{"Lugar4","12-03-2018"},
-				{"Lugar4","12-03-2018"},
-				{"Lugar4","12-03-2018"},
-				{"Lugar4","12-03-2018"}
-		};	
-
-		JTable tabela = new JTable(dadoslugar,colunaslugar);
-		JScrollPane barrarolagem = new JScrollPane(tabela);
+		private JPanel jp;
+		private JButton addlug;
+		private JButton editlug;
+		private JButton apagalug;
+		private JButton voltar;
+		private JLabel lbnomelugar;
+		private JTextField tfnomelugar;
+		private JLabel lbdata;
+		private JLabel lbguia;
+		private JTextField tfdata;
+		private JComboBox<String> comboguia;
+		private DefaultTableModel modelo;
+		private JTable tabela;
+		private JScrollPane barrarolagem;
 		
 		void criaTelaLugar(){
-			JPanel jp = new JPanel();
-			JButton addlug = new JButton("Adicionar");
-			JButton editlug = new JButton("Editar");
-			JButton apagalug = new JButton("Apagar");
-			JButton voltar = new JButton("Voltar");
-			JLabel lbnomelugar = new JLabel("Nome:");
-			JTextField tfnomelugar = new JTextField(30);
-			JLabel lbendereco = new JLabel("Endereço");
-			JTextField tfendereco = new JTextField(30);
-			JLabel lbdata = new JLabel("Data Disponivel");
-			JComboBox<String> combodata = new JComboBox<String>(dadoscbdv);
 			
+			jp = new JPanel();
+			addlug = new JButton("Adicionar");
+			editlug = new JButton("Editar");
+			apagalug = new JButton("Apagar");
+			voltar = new JButton("Voltar");
+			lbnomelugar = new JLabel("Nome:");
+			tfnomelugar = new JTextField(30);
+			lbdata = new JLabel("Data Disponivel");
+			lbguia = new JLabel("Selecione o guia");
+			tfdata = new JTextField();
+			comboguia = new JComboBox<String>();
+			modelo = new DefaultTableModel();
+			tabela = new JTable(modelo);
+			barrarolagem = new JScrollPane(tabela);
 			jp.setLayout(null);
 			
 			//Label Nome
-			lbnomelugar.setBounds(5, 5, 150, 30);
+			lbnomelugar.setBounds(5, 5, 180, 30);
 			jp.add(lbnomelugar);
 			
 			//Input de Nome
-			tfnomelugar.setBounds(5, 35, 150, 30);
+			tfnomelugar.setBounds(5, 35, 180, 30);
 			jp.add(tfnomelugar);
 			
-			// Label endereço
-			lbendereco.setBounds(160, 5, 180, 30);
-			jp.add(lbendereco);
-			tfendereco.setBounds(160, 35, 180, 30);
-			jp.add(tfendereco);
-			
 			// Label Seleciona data com ComboBox
-			lbdata.setBounds(350, 5, 155, 30);
+			lbdata.setBounds(190, 5, 155, 30);
 			jp.add(lbdata);
-			combodata.setBounds(350, 35, 155, 30);
-			jp.add(combodata);
+			tfdata.setBounds(190, 35, 155, 30);
+			jp.add(tfdata);
+			
+			// Label Seleciona guia com ComboBox
+			lbguia.setBounds(350, 5, 155, 30);
+			jp.add(lbguia);
+			comboguia.setBounds(350, 35, 155, 30);
+			jp.add(comboguia);
 			
 			// Configurações Botão Adicionar
 			addlug.setBounds(510, 80, 180, 40);
 			addlug.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					LugarController lugarc = new LugarController();
+				
 					
+					try {
+						lugarc.cadastraLugar(tfnomelugar.getText(), tfdata.getText());
+						JOptionPane.showMessageDialog(null,"Lugar adicionado com sucesso!");
+					} catch (SQLException e1) {
+						JOptionPane.showMessageDialog(null, "Erro no cadastro ao banco de dados "+e1);
+					}
 				}
 			});
 			jp.add(addlug);
@@ -97,7 +107,7 @@ public class TelaLugar extends JFrame{
 			apagalug.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
-				}
+			}
 			});
 			jp.add(apagalug);
 			
@@ -121,8 +131,37 @@ public class TelaLugar extends JFrame{
 			setLocationRelativeTo(null);
 			setResizable(false);
 			add(jp);
+			criarTabela();
 		}
 		
+		public void criarTabela() {
+			modelo.addColumn("Id");
+			modelo.addColumn("Nome do Lugar");
+			modelo.addColumn("Data Disponivel");
+			modelo.addColumn("Guia");
+			leiaJTable(modelo);
+		}
+		
+		public static void leiaJTable(DefaultTableModel modelo) {
+		
+			modelo.setNumRows(0);
+			
+			try {
+				
+			LugarDAO lugardao = new LugarDAO();
+			
+			for (LugarModel l : lugardao.listarLugar()) {
+				modelo.addRow(new Object[] {
+					l.getId(),
+					l.getNome(),
+					l.getDataDisponivel(),
+					l.getNomeGuia()
+				});
+			}
+			}catch(SQLException ex) {
+				System.out.println("Erro no Listar Tabela!!! "+ex);
+			}
+		}
 		
 		
 		void fechaTelaLugar(){

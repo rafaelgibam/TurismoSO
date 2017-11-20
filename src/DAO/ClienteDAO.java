@@ -5,7 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
+
 import Models.ClienteModel;
+import Models.GuiaModel;
+import Models.LugarModel;
 
 public class ClienteDAO extends GenericDAO{
 	
@@ -44,10 +49,10 @@ public class ClienteDAO extends GenericDAO{
 		alterar(alteracliente,cliente.getId());
 	}
 	
-	public List listarCliente() throws SQLException {
+	public List<ClienteModel> listarCliente() throws SQLException {
 		//Instancia da lista de lugares
-		List listadecliente = new ArrayList();
-		
+		List<ClienteModel> listadecliente = new ArrayList<>();
+		try {
 		//Query de Pesquisa 
 		String select = "SELECT * FROM cliente";
 		
@@ -61,17 +66,29 @@ public class ClienteDAO extends GenericDAO{
 		while (rs.next()) {
 			
 			ClienteModel cliente = new ClienteModel();
+			GuiaModel guia = new GuiaModel();
+			LugarModel lugar = new LugarModel();
 
-			cliente.setId(rs.getInt("id_cliente"));
 			cliente.setNome(rs.getString("nome"));
+			guia.setId(rs.getInt("lugar_guia_idguia"));
+			lugar.setId(rs.getInt("lugar_idlugar"));
 			
 
 			listadecliente.add(cliente);
+			listadecliente.add(guia);
+			listadecliente.add(lugar);
+			
+			// fecha conexao resultset
+			rs.close();
+			// fecha conexao prepareStatement
+			ptsmt.close();
+			
 		}
-		// fecha conexao resultset
-		rs.close();
-		// fecha conexao prepareStatement
-		ptsmt.close();
+		
+		}catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "ERRO no ResultSet cliente "+e);
+		}
+		
 		
 		//retorna valores de List<>
 		return listadecliente;

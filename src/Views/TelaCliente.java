@@ -3,8 +3,12 @@ package Views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.sql.SQLException;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import Controllers.ClienteController;
+import DAO.ClienteDAO;
+import Models.ClienteModel;
 
 public class TelaCliente extends JFrame{
 		/**
@@ -12,19 +16,19 @@ public class TelaCliente extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-		String [] colunascli = {"Clientes","Guias","Lugar","Data"};
-		Object [][] dadoscli = {
-				{"Cliente1","Guia1","Lugar1","12-02-2018"},
-		};	
+		String[] colunas = {"Nome","Guia","Lugar","Data Disponivel"};
+		String[] dadoscbl = {"guia1"};
+		String[] dadoscbdv = {"guia1"};
 		
-		String [] dadoscbg = new String[] {"guia1","guia2","guia3"};
-		String [] dadoscbl = new String[] {"lugar1","lugar2","lugar3"};
-		String [] dadoscbdv = new String[] {"13-08-2018","13-05-2019","15-01-2018"};
-	
-		JTable tabela = new JTable(dadoscli,colunascli);
-		JScrollPane barrarolagem = new JScrollPane(tabela);
 		
 		void criaTelaCliente(){
+			DefaultTableModel modelo = new DefaultTableModel();
+			modelo.addColumn("Nome do Cliente");
+			modelo.addColumn("Guia");
+			modelo.addColumn("Lugar");
+			modelo.addColumn("Data Disponivel");
+			JTable tabela = new JTable(modelo);
+			JScrollPane barrarolagem = new JScrollPane(tabela);
 			JPanel jp = new JPanel();
 			JButton addcli = new JButton("Adicionar");
 			JButton editcli = new JButton("Editar");
@@ -33,12 +37,15 @@ public class TelaCliente extends JFrame{
 			JLabel lbnomecli = new JLabel("Nome do Cliente");
 			JTextField tfnomecli = new JTextField();
 			JLabel lbguia = new JLabel("Escolha o Guia:");
-			JComboBox<String> comboguia = new JComboBox<String>(dadoscbg);
+			JComboBox<String> comboguia = new JComboBox<String>(dadoscbl);
 			JLabel lblugar = new JLabel("Escolha o Lugar");
 			JComboBox<String> combolugar = new JComboBox<String>(dadoscbl);
 			JLabel lbdataviagem = new JLabel("Data da Viagem:");
 			JComboBox<String> combodataviagem = new JComboBox<String>(dadoscbdv);
+		
 			
+			//Setando o modelo da tabela
+
 			
 			jp.setLayout(null);
 			
@@ -73,8 +80,15 @@ public class TelaCliente extends JFrame{
 			addcli.setBounds(510, 80, 180, 40);
 			addcli.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					ClienteController cliente = new ClienteController();
 					
-					
+					try {
+						cliente.cadastraCliente(tfnomecli.getText());
+						JOptionPane.showMessageDialog(null,"Cliente cadastrado com sucesso!");
+					} catch (SQLException e1) {
+						JOptionPane.showMessageDialog(null,"Erro ao cadastrar cliente! "+e1);
+					}
+				
 				}
 			});
 			jp.add(addcli);
@@ -83,7 +97,9 @@ public class TelaCliente extends JFrame{
 			editcli.setBounds(510, 130, 180, 40);
 			editcli.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					if(tabela.getSelectedRow() != -1) {
+						
+					}
 				}
 			});
 			jp.add(editcli);
@@ -92,7 +108,9 @@ public class TelaCliente extends JFrame{
 			apagacli.setBounds(510, 180, 180, 40);
 			apagacli.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					if(tabela.getSelectedRow() != -1) {
+						
+					}
 				}
 			});
 			jp.add(apagacli);
@@ -120,7 +138,9 @@ public class TelaCliente extends JFrame{
 		}
 		
 		
+		
 		void fechaTelaCliente(){
 			this.dispose();
 		}
+		
 }

@@ -2,56 +2,56 @@ package Views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import Controllers.GuiaController;
+import DAO.GuiaDAO;
+import Models.GuiaModel;
 
 public class TelaGuia extends JFrame{
-
 	
 	/**
 	 * Version 1.0.0
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	String [] dadoscbg = new String[] {"Lugar1","Lugar2","Lugar3"};
-	String [] colunasguia = {"Guias","Preço Hora","Lugar"};
-	Object [][] dadosguia = {
-			{"Guia1","R$ 30,00","Lugar1"},
-			{"Guia2","R$ 30,00","Lugar2"},
-			{"Guia3","R$ 30,00","Lugar3"},
-			{"Guia4","R$ 30,00","Lugar4"},
-			{"Guia4","R$ 30,00","Lugar4"},
-			{"Guia4","R$ 30,00","Lugar4"},
-			{"Guia4","R$ 30,00","Lugar4"},
-			{"Guia4","R$ 30,00","Lugar4"},
-			{"Guia4","R$ 30,00","Lugar4"},
-			{"Guia4","R$ 30,00","Lugar4"},
-			{"Guia4","R$ 30,00","Lugar4"},
-			{"Guia4","R$ 30,00","Lugar4"}
-	};	
-
-	JTable tabela = new JTable(dadosguia,colunasguia);
-	JScrollPane barrarolagem = new JScrollPane(tabela);
+	private	DefaultTableModel modelo = new DefaultTableModel();
+	private static JTable tabela;
+	private JPanel jp;
+	JButton addguia;
+	JButton editguia;
+	JButton apagaguia;
+	JButton voltarguia;
+	JLabel lbnomeguia;
+	JTextField tfnomeguia;
+	JLabel lbprecoguia;
+	JTextField tfprecoguia;
+	JLabel lblugarguia;
+	JScrollPane barrarolagem;
 	
 	void criaTelaGuia(){
-		JPanel jp = new JPanel();
-		JButton addguia = new JButton("Adicionar");
-		JButton editguia = new JButton("Editar");
-		JButton apagaguia = new JButton("Apagar");
-		JButton voltarguia = new JButton("Voltar");
-		JLabel lbnomeguia = new JLabel("Nome:");
-		JTextField tfnomeguia = new JTextField(30);
-		JLabel lbprecoguia = new JLabel("Preço por Hora");
-		JTextField tfprecoguia = new JTextField(30);
-		JLabel lblugarguia = new JLabel("Escolha um Lugar");
-		JComboBox<String> combolugar = new JComboBox<String>(dadoscbg);
+		jp = new JPanel();
+		addguia = new JButton("Adicionar");
+		editguia = new JButton("Editar");
+		apagaguia = new JButton("Apagar");
+		voltarguia = new JButton("Voltar");
+		lbnomeguia = new JLabel("Nome:");
+		tfnomeguia = new JTextField(30);
+		lbprecoguia = new JLabel("Preço por Hora");
+		tfprecoguia = new JTextField(30);
+		lblugarguia = new JLabel("Escolha um Lugar");
+		tabela = new JTable(modelo);
+		barrarolagem = new JScrollPane(tabela);
+	
 		
 		jp.setLayout(null);
 		
@@ -69,18 +69,26 @@ public class TelaGuia extends JFrame{
 		tfprecoguia.setBounds(210, 35, 100, 30);
 		jp.add(tfprecoguia);
 		
-		// Label Seleciona Lugar com ComboBox
-		lblugarguia.setBounds(315, 5, 190, 30);
-		jp.add(lblugarguia);
-		combolugar.setBounds(315, 35, 190, 30);
-		jp.add(combolugar);
-		
 		// Configurações Botão Adicionar
 		addguia.setBounds(510, 80, 180, 40);
 		addguia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
+				GuiaController guia = new GuiaController();
+				try {
+					if(tfnomeguia == null && tfprecoguia == null) {
+						JOptionPane.showMessageDialog(null, "Campos vazio, preencha os campos");
+					}else {
+						guia.cadastraGuia(tfnomeguia.getText(), Double.parseDouble(tfprecoguia.getText()));
+						JOptionPane.showMessageDialog(null, "Guia adicionado com sucesso!");
+					}
+				} catch (NumberFormatException e1) {
+					JOptionPane.showMessageDialog(null, "ERRO no formato dos caracteres! " + e1);
+				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(null, "ERRO ao salvar no banco de dados " + e1);
+				}
+				tfnomeguia.setText("");
+				tfprecoguia.setText("");
+				modelo.fireTableDataChanged();
 			}
 		});
 		jp.add(addguia);
@@ -90,15 +98,44 @@ public class TelaGuia extends JFrame{
 		editguia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				GuiaModel guia = new GuiaModel();
+				GuiaController guiacontrol = new GuiaController();
+				
+				guia.setId((int)tabela.getValueAt(tabela.getSelectedRow(), 0));
+				tfnomeguia.setText(tabela.getValueAt(tabela.getSelectedRow(), 1).toString());
+				tfprecoguia.setText(tabela.getValueAt(tabela.getSelectedRow(), 2).toString());
+				
+				try {
+					guiacontrol.alterarGuia(guia.getId(), tfnomeguia.getText(), Double.parseDouble(tfprecoguia.getText()));
+				} catch (NumberFormatException e1) {
+					JOptionPane.showMessageDialog(null, "Erro nos caracteres no alterar "+e1);
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(null, "Erro Banco de dados ");
+					System.out.println(e1);
+				}
+			
 			}
 		});
+		
 		jp.add(editguia);
 		
 		// Configurações Botão Apagar
 		apagaguia.setBounds(510, 180, 180, 40);
 		apagaguia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GuiaModel guia = new GuiaModel();
+				GuiaController guiac = new GuiaController();
+				guia.setId( (int) tabela.getValueAt(tabela.getSelectedRow(), 0));
 				
+				try {
+					guiac.apagarGuia(guia.getId());
+					JOptionPane.showMessageDialog(null,"Guia apagado com sucesso!");
+				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(null,"ERRO ao excluir guia "+e1);
+				}
+				
+				modelo.fireTableRowsDeleted(tabela.getSelectedRow(), tabela.getSelectedRow());
 			}
 		});
 		jp.add(apagaguia);
@@ -123,7 +160,49 @@ public class TelaGuia extends JFrame{
 		setLocationRelativeTo(null);
 		setResizable(false);
 		add(jp);
+		
+		criarTabela();
+		
 	}
+	
+	public void criarTabela(){
+		modelo.addColumn("id");
+		modelo.addColumn("Nome Guia");
+		modelo.addColumn("Valor Hora");
+		modelo.fireTableDataChanged();
+		leiaJTable(modelo);
+		
+	}
+	
+	public static void leiaJTable(DefaultTableModel modelo) {
+		
+		modelo.setNumRows(0);
+		
+		try {
+			
+		GuiaDAO guiadao = new GuiaDAO();
+		
+		for (GuiaModel g : guiadao.listarGuia()) {
+			modelo.addRow(new Object[] {
+				g.getId(),
+				g.getNome(),
+				g.getValorHora()
+			});
+		}
+		
+		}catch(SQLException ex) {
+			System.out.println("Erro no Listar Tabela!!! "+ex);
+		}
+	}
+	
+	public void tabelaMouseClicked(MouseEvent event){
+		if(tabela.getSelectedRow() != -1) {
+			tfnomeguia.setText((String) tabela.getValueAt(tabela.getSelectedRow(), 1));
+			tfprecoguia.setText((String) tabela.getValueAt(tabela.getSelectedRow(), 2));
+		}
+	}
+	
+	
 	
 	void fechaTelaGuia(){
 		this.dispose();

@@ -1,13 +1,12 @@
 package Models;
 
-import java.sql.Date;
-
 public class LugarModel {
 	
 	private int id;
 	private String nome;
 	private String endereco;
-	private Date dataDisponivel;
+	private String dataDisponivel;
+	private String guia;
 	
 	public int getId() {
 		return id;
@@ -29,11 +28,17 @@ public class LugarModel {
 		this.endereco = endereco;
 	}
 	
-	public Date getDataDisponivel() {
+	public String getDataDisponivel() {
 		return dataDisponivel;
 	}
-	public void setDataDisponivel(Date date) {
+	public void setDataDisponivel(String date) {
 		this.dataDisponivel = date;
 	}
-	
+	public String getNomeGuia() {
+		return guia;
+	}
+	public void setNomeGuia(String guia) {
+		this.guia = guia;
+	}	
+
 }

@@ -26,7 +26,7 @@ public class GuiaController {
 		new GuiaDAO().alterar(guia);
 	}
 	
-	public void apagarCliente(int id) throws SQLException {
+	public void apagarGuia(int id) throws SQLException {
 		GuiaModel guia = new GuiaModel();
 		
 		guia.setId(id);
@@ -34,12 +34,6 @@ public class GuiaController {
 		new GuiaDAO().apagar(guia);
 	}
 	
-	public void listarGuia() throws SQLException {
-		GuiaDAO guia = new GuiaDAO();
-		
-		guia.listarGuia();
-		
-	}
 	
 	
 }

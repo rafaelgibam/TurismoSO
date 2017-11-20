@@ -27,7 +27,7 @@ public class GuiaDAO extends GenericDAO {
 	// Metodo que apaga um objeto do banco
 	public void apagar(GuiaModel guia) throws SQLException {
 		// Sql para ser preparado para Statement
-		String apagaguia = "DELETE FROM guia WHERE id_guia = ?";
+		String apagaguia = "DELETE FROM guia WHERE idguia = ?";
 
 		// apaga objeto do banco
 		apagar(apagaguia, guia.getId());
@@ -36,22 +36,20 @@ public class GuiaDAO extends GenericDAO {
 	// Metodo que altera objeto no banco
 	public void alterar(GuiaModel guia) throws SQLException {
 		// Sql para ser preparado para Statement
-		String alteraguia = "UPDATE guia SET id_guia = ?";
+		String alteraguia = "UPDATE guia SET nome = ?, valor_hora = ? WHERE idguia = ?";
 
 		// altera objeto do banco
-		alterar(alteraguia, guia.getId());
+		alterar(alteraguia, guia.getId(),guia.getNome(),guia.getValorHora());
 	}
 
-	public List listarGuia() throws SQLException {
+	public List<GuiaModel> listarGuia() throws SQLException {
 		// Instancia da lista de lugares
-		List listadeguia = new ArrayList();
+		List<GuiaModel> listadeguia = new ArrayList<GuiaModel>();
 
-		// Query de Pesquisa
 		String select = "SELECT * FROM guia";
-
 		// Preparando query para o banco
 		PreparedStatement ptsmt = getConnection().prepareStatement(select);
-
+		
 		// Criando resultset para percorrer
 		ResultSet rs = ptsmt.executeQuery();
 
@@ -60,7 +58,7 @@ public class GuiaDAO extends GenericDAO {
 
 			GuiaModel guia = new GuiaModel();
 
-			guia.setId(rs.getInt("id_guia"));
+			guia.setId(rs.getInt("idguia"));
 			guia.setNome(rs.getString("nome"));
 			guia.setValorHora(rs.getDouble("valor_hora"));
 
@@ -72,6 +70,8 @@ public class GuiaDAO extends GenericDAO {
 		
 		// fecha conexao prepareStatement
 		ptsmt.close();
+		// fecha conexão 
+		getConnection().close();
 
 		// retorna valores de List<>
 		return listadeguia;
