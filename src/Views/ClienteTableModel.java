@@ -1,13 +1,21 @@
-package Models;
+package Views;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 
 import javax.swing.table.AbstractTableModel;
 
+import Models.ClienteModel;
+import Models.GuiaModel;
+import Models.LugarModel;
+
 public class ClienteTableModel extends AbstractTableModel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private List<GuiaModel> dadosguia = new ArrayList<>();
 	private List<LugarModel> dadoslugar = new ArrayList<>();
  	private List<ClienteModel> dadosclientes = new ArrayList<>();
@@ -73,7 +81,7 @@ public class ClienteTableModel extends AbstractTableModel {
 		case 2:
 			dadoslugar.get(linha).setNome((String) valor);
 		case 3:
-			dadoslugar.get(linha).setDataDisponivel((Date) valor);
+			dadoslugar.get(linha).setDataDisponivel((String) valor);
 	}
 		//atualiza tabela
 		this.fireTableCellUpdated(linha, linha);

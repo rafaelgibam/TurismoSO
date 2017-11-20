@@ -39,7 +39,7 @@ public class GuiaDAO extends GenericDAO {
 		String alteraguia = "UPDATE guia SET nome = ?, valor_hora = ? WHERE idguia = ?";
 
 		// altera objeto do banco
-		alterar(alteraguia, guia.getId(),guia.getNome(),guia.getValorHora());
+		alterar(alteraguia, guia.getId(), guia.getNome(), guia.getValorHora());
 	}
 
 	public List<GuiaModel> listarGuia() throws SQLException {
@@ -49,7 +49,7 @@ public class GuiaDAO extends GenericDAO {
 		String select = "SELECT * FROM guia";
 		// Preparando query para o banco
 		PreparedStatement ptsmt = getConnection().prepareStatement(select);
-		
+
 		// Criando resultset para percorrer
 		ResultSet rs = ptsmt.executeQuery();
 
@@ -64,18 +64,17 @@ public class GuiaDAO extends GenericDAO {
 
 			listadeguia.add(guia);
 		}
-		
+
 		// fecha conexao resultset
 		rs.close();
-		
+
 		// fecha conexao prepareStatement
 		ptsmt.close();
-		// fecha conexão 
+		// fecha conexão
 		getConnection().close();
 
 		// retorna valores de List<>
 		return listadeguia;
 
 	}
-
 }

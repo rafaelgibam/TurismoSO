@@ -1,15 +1,21 @@
-package Models;
+package Views;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Date;
 import javax.swing.table.AbstractTableModel;
+
+import Models.LugarModel;
 
 public class LugarTableModel extends AbstractTableModel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private List<LugarModel> dadoslugar = new ArrayList<>();
 	
-	private String[] colunas = {"Nome do Lugar","Endereço","Data Disponivel"};
+	private String[] colunas = {"Nome do Lugar","Data Disponivel"};
 	
 	/* Pega nome para adiociona no topo das colunas 
 	* @return coluna
@@ -47,8 +53,6 @@ public class LugarTableModel extends AbstractTableModel {
 			case 0:
 				return dadoslugar.get(linha).getNome();
 			case 1:
-				return dadoslugar.get(linha).getEndereco();
-			case 2:
 				return dadoslugar.get(linha).getDataDisponivel();
 				
 		}
@@ -64,10 +68,8 @@ public class LugarTableModel extends AbstractTableModel {
 		
 		case 0:
 			dadoslugar.get(linha).setNome((String) valor);
-		case 1:
-			dadoslugar.get(linha).setEndereco((String) valor);
-		case 2: 
-			dadoslugar.get(linha).setDataDisponivel((Date) valor);
+		case 1: 
+			dadoslugar.get(linha).setDataDisponivel((String) valor);
 		
 	}
 		//atualiza tabela

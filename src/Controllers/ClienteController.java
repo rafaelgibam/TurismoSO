@@ -32,11 +32,6 @@ public class ClienteController {
 		new ClienteDAO().apagar(cliente);
 	}
 	
-	public void listarCliente() throws SQLException {
-		
-		ClienteDAO cliente = new ClienteDAO();
-		
-	}
 	
 	
 	

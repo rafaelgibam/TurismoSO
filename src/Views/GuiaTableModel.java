@@ -1,9 +1,11 @@
-package Models;
+package Views;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
+
+import Models.GuiaModel;
 
 public class GuiaTableModel extends AbstractTableModel {
 
@@ -19,6 +21,7 @@ public class GuiaTableModel extends AbstractTableModel {
 		
 		return colunas[coluna];
 	}
+	
 	/* Pega a quantidade de linha da tabela 
 	* @return dadosclientes.size()
 	*/

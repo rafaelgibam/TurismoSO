@@ -3,10 +3,10 @@ package Models;
 public class LugarModel {
 	
 	private int id;
-	private String nome;
-	private String endereco;
+	private String nome;;
 	private String dataDisponivel;
-	private String guia;
+	private String guianome;
+	private GuiaModel guia;
 	
 	public int getId() {
 		return id;
@@ -21,12 +21,6 @@ public class LugarModel {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getEndereco() {
-		return endereco;
-	}
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
 	
 	public String getDataDisponivel() {
 		return dataDisponivel;
@@ -34,11 +28,19 @@ public class LugarModel {
 	public void setDataDisponivel(String date) {
 		this.dataDisponivel = date;
 	}
-	public String getNomeGuia() {
+	public String getGuiaNome() {
+		return guianome;
+	}
+	
+	public void setGuiaNome(String nome) {
+		this.guianome = nome;
+	}
+	public GuiaModel getGuia() {
 		return guia;
 	}
-	public void setNomeGuia(String guia) {
+	public void setGuia(GuiaModel guia) {
 		this.guia = guia;
-	}	
+	}
+	
 
 }

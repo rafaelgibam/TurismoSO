@@ -18,10 +18,10 @@ public class LugarDAO extends GenericDAO {
 	public void salvar(LugarModel lugar) throws SQLException {
 		
 		// Sql para ser preparado para Statement
-		String adicionalugar = "INSERT INTO lugar(nome,data_disponivel,guia_idguia) VALUES(?,?,?)";
+		String adicionalugar = "INSERT INTO lugar(nome,data_disponivel) VALUES(?,?)";
 		
 		// salva o objeto no banco
-		salvar(adicionalugar, lugar.getNome(), lugar.getDataDisponivel());
+		salvar(adicionalugar, lugar.getNome(), lugar.getDataDisponivel(),lugar.getGuia().getId());
 		
 	}
 
@@ -64,7 +64,7 @@ public class LugarDAO extends GenericDAO {
 			lugar.setId(rs.getInt("idlugar"));
 			lugar.setNome(rs.getString("nome"));
 			lugar.setDataDisponivel(rs.getString("data_disponivel"));
-			lugar.setNomeGuia(rs.getString("guia.nome"));
+			lugar.setGuiaNome((rs.getString("guia.nome")));
 
 			listadelugar.add(lugar);
 		}
@@ -77,5 +77,8 @@ public class LugarDAO extends GenericDAO {
 		return listadelugar;
 
 	}
+	
+	
+
 
 }

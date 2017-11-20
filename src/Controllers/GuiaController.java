@@ -33,7 +33,4 @@ public class GuiaController {
 		
 		new GuiaDAO().apagar(guia);
 	}
-	
-	
-	
 }

@@ -11,19 +11,18 @@ public class LugarController {
 		
 		lugar.setNome(nome);
 		lugar.setDataDisponivel(datadisponivel);
+
 		
 		new LugarDAO().salvar(lugar);
 	}
 	
-	public void alterarLugar(int id, String nome, String endereco, String datadisponivel ) throws SQLException {
+	public void alterarLugar(int id, String nome, String datadisponivel, int idguia) throws SQLException {
 		LugarModel lugar = new LugarModel();
 		
 		lugar.setId(id);
 		lugar.setNome(nome);
-		lugar.setEndereco(endereco);
 		lugar.setDataDisponivel(datadisponivel);
-		
-		
+		lugar.getGuia().setId(idguia);
 		new LugarDAO().alterar(lugar);
 	}
 	

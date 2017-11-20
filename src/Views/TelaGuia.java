@@ -74,12 +74,14 @@ public class TelaGuia extends JFrame{
 		addguia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GuiaController guia = new GuiaController();
+				ThreadCadastro thread = new ThreadCadastro();
 				try {
 					if(tfnomeguia == null && tfprecoguia == null) {
 						JOptionPane.showMessageDialog(null, "Campos vazio, preencha os campos");
 					}else {
 						guia.cadastraGuia(tfnomeguia.getText(), Double.parseDouble(tfprecoguia.getText()));
 						JOptionPane.showMessageDialog(null, "Guia adicionado com sucesso!");
+						//thread.start();
 					}
 				} catch (NumberFormatException e1) {
 					JOptionPane.showMessageDialog(null, "ERRO no formato dos caracteres! " + e1);
@@ -89,6 +91,7 @@ public class TelaGuia extends JFrame{
 				tfnomeguia.setText("");
 				tfprecoguia.setText("");
 				modelo.fireTableDataChanged();
+				
 			}
 		});
 		jp.add(addguia);
@@ -104,7 +107,7 @@ public class TelaGuia extends JFrame{
 				guia.setId((int)tabela.getValueAt(tabela.getSelectedRow(), 0));
 				tfnomeguia.setText(tabela.getValueAt(tabela.getSelectedRow(), 1).toString());
 				tfprecoguia.setText(tabela.getValueAt(tabela.getSelectedRow(), 2).toString());
-				
+				JOptionPane.showMessageDialog(null, "Guia alterado com sucesso!");
 				try {
 					guiacontrol.alterarGuia(guia.getId(), tfnomeguia.getText(), Double.parseDouble(tfprecoguia.getText()));
 				} catch (NumberFormatException e1) {
@@ -127,7 +130,7 @@ public class TelaGuia extends JFrame{
 				GuiaModel guia = new GuiaModel();
 				GuiaController guiac = new GuiaController();
 				guia.setId( (int) tabela.getValueAt(tabela.getSelectedRow(), 0));
-				
+				JOptionPane.showMessageDialog(null,"Guia apagado com sucesso!");
 				try {
 					guiac.apagarGuia(guia.getId());
 					JOptionPane.showMessageDialog(null,"Guia apagado com sucesso!");

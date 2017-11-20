@@ -5,12 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JOptionPane;
-
 import Models.ClienteModel;
-import Models.GuiaModel;
-import Models.LugarModel;
+
 
 public class ClienteDAO extends GenericDAO{
 	
@@ -66,17 +63,13 @@ public class ClienteDAO extends GenericDAO{
 		while (rs.next()) {
 			
 			ClienteModel cliente = new ClienteModel();
-			GuiaModel guia = new GuiaModel();
-			LugarModel lugar = new LugarModel();
 
 			cliente.setNome(rs.getString("nome"));
-			guia.setId(rs.getInt("lugar_guia_idguia"));
-			lugar.setId(rs.getInt("lugar_idlugar"));
+			cliente.getGuia().setId(rs.getInt("lugar_guia_idguia"));
+			cliente.getLugar().setId(rs.getInt("lugar_idlugar"));
 			
 
 			listadecliente.add(cliente);
-			listadecliente.add(guia);
-			listadecliente.add(lugar);
 			
 			// fecha conexao resultset
 			rs.close();
@@ -88,8 +81,7 @@ public class ClienteDAO extends GenericDAO{
 		}catch(Exception e) {
 			JOptionPane.showMessageDialog(null, "ERRO no ResultSet cliente "+e);
 		}
-		
-		
+	
 		//retorna valores de List<>
 		return listadecliente;
 

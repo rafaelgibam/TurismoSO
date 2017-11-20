@@ -64,7 +64,7 @@ public class TelaLugar extends JFrame{
 			tfnomelugar.setBounds(5, 35, 180, 30);
 			jp.add(tfnomelugar);
 			
-			// Label Seleciona data com ComboBox
+			// Label Seleciona data 
 			lbdata.setBounds(190, 5, 155, 30);
 			jp.add(lbdata);
 			tfdata.setBounds(190, 35, 155, 30);
@@ -81,7 +81,6 @@ public class TelaLugar extends JFrame{
 			addlug.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					LugarController lugarc = new LugarController();
-				
 					
 					try {
 						lugarc.cadastraLugar(tfnomelugar.getText(), tfdata.getText());
@@ -97,7 +96,20 @@ public class TelaLugar extends JFrame{
 			editlug.setBounds(510, 130, 180, 40);
 			editlug.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					LugarController lugarc = new LugarController();
+					LugarModel lugar = new LugarModel();
+					lugar.setId((int)tabela.getValueAt(tabela.getSelectedRow(), 0));
+					lugar.setNome(tabela.getValueAt(tabela.getSelectedRow(), 1).toString());
+					lugar.setDataDisponivel(tabela.getValueAt(tabela.getSelectedRow(), 2).toString());
+					lugar.getGuia().setId((int)tabela.getValueAt(tabela.getSelectedRow(), 3));
+				
+					try {
+						lugarc.alterarLugar(lugar.getId(), lugar.getNome(), lugar.getDataDisponivel(), lugar.getGuia().getId());
+						JOptionPane.showMessageDialog(null,"Lugar alterado com sucesso!");
+					} catch (SQLException e1) {
+						JOptionPane.showMessageDialog(null, "ERRO ao alterar lugar");
+						System.out.println(e1);
+					}
 				}
 			});
 			jp.add(editlug);
@@ -106,7 +118,16 @@ public class TelaLugar extends JFrame{
 			apagalug.setBounds(510, 180, 180, 40);
 			apagalug.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					LugarController lugarc = new LugarController();
+					LugarModel lugar = new LugarModel();
+					lugar.setId((int)tabela.getValueAt(tabela.getSelectedRow(), 0));
+					try {
+						lugarc.apagarCliente(lugar.getId());
+						JOptionPane.showMessageDialog(null, "Lugar apagado com sucesoo!");
+					} catch (SQLException e1) {
+						JOptionPane.showMessageDialog(null, "ERRO ao apagar lugar");
+						System.out.println(e1);
+					}
 			}
 			});
 			jp.add(apagalug);
@@ -155,8 +176,8 @@ public class TelaLugar extends JFrame{
 					l.getId(),
 					l.getNome(),
 					l.getDataDisponivel(),
-					l.getNomeGuia()
-				});
+					l.getGuiaNome()
+					});
 			}
 			}catch(SQLException ex) {
 				System.out.println("Erro no Listar Tabela!!! "+ex);
