@@ -26,4 +26,10 @@ public class GuiaModel {
 	public void setValorHora(double valorhora) {
 		this.valorhora = valorhora;
 	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.getNome();
+	}
 }

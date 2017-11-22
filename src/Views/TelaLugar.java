@@ -14,7 +14,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import Controllers.LugarController;
+import DAO.GuiaDAO;
 import DAO.LugarDAO;
+import Models.GuiaModel;
 import Models.LugarModel;
 
 public class TelaLugar extends JFrame{
@@ -33,10 +35,11 @@ public class TelaLugar extends JFrame{
 		private JLabel lbdata;
 		private JLabel lbguia;
 		private JTextField tfdata;
-		private JComboBox<String> comboguia;
+		private JComboBox<GuiaModel> comboguia;
 		private DefaultTableModel modelo;
 		private JTable tabela;
 		private JScrollPane barrarolagem;
+		private GuiaModel guia;
 		
 		void criaTelaLugar(){
 			
@@ -50,7 +53,7 @@ public class TelaLugar extends JFrame{
 			lbdata = new JLabel("Data Disponivel");
 			lbguia = new JLabel("Selecione o guia");
 			tfdata = new JTextField();
-			comboguia = new JComboBox<String>();
+			comboguia = new JComboBox<GuiaModel>();
 			modelo = new DefaultTableModel();
 			tabela = new JTable(modelo);
 			barrarolagem = new JScrollPane(tabela);
@@ -74,6 +77,8 @@ public class TelaLugar extends JFrame{
 			lbguia.setBounds(350, 5, 155, 30);
 			jp.add(lbguia);
 			comboguia.setBounds(350, 35, 155, 30);
+			listarComboBox();
+			
 			jp.add(comboguia);
 			
 			// Configurações Botão Adicionar
@@ -81,9 +86,9 @@ public class TelaLugar extends JFrame{
 			addlug.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					LugarController lugarc = new LugarController();
-					
+					guia = (GuiaModel) comboguia.getSelectedItem();
 					try {
-						lugarc.cadastraLugar(tfnomelugar.getText(), tfdata.getText());
+						lugarc.cadastraLugar(tfnomelugar.getText(), tfdata.getText(), guia.getId());
 						JOptionPane.showMessageDialog(null,"Lugar adicionado com sucesso!");
 					} catch (SQLException e1) {
 						JOptionPane.showMessageDialog(null, "Erro no cadastro ao banco de dados "+e1);
@@ -98,11 +103,15 @@ public class TelaLugar extends JFrame{
 				public void actionPerformed(ActionEvent e) {
 					LugarController lugarc = new LugarController();
 					LugarModel lugar = new LugarModel();
+					
 					lugar.setId((int)tabela.getValueAt(tabela.getSelectedRow(), 0));
 					lugar.setNome(tabela.getValueAt(tabela.getSelectedRow(), 1).toString());
 					lugar.setDataDisponivel(tabela.getValueAt(tabela.getSelectedRow(), 2).toString());
-					lugar.getGuia().setId((int)tabela.getValueAt(tabela.getSelectedRow(), 3));
+					GuiaModel guia = new GuiaModel();
+					guia.setId((int) tabela.getValueAt(tabela.getSelectedRow(), 3));
 				
+					lugar.setGuia(guia);
+					
 					try {
 						lugarc.alterarLugar(lugar.getId(), lugar.getNome(), lugar.getDataDisponivel(), lugar.getGuia().getId());
 						JOptionPane.showMessageDialog(null,"Lugar alterado com sucesso!");
@@ -176,12 +185,27 @@ public class TelaLugar extends JFrame{
 					l.getId(),
 					l.getNome(),
 					l.getDataDisponivel(),
-					l.getGuiaNome()
+					l.getGuia().getNome()
 					});
 			}
 			}catch(SQLException ex) {
 				System.out.println("Erro no Listar Tabela!!! "+ex);
 			}
+		}
+		
+		public void listarComboBox() {
+			
+			GuiaDAO guiadao;
+			try {
+				guiadao = new GuiaDAO();
+				
+				for(GuiaModel g : guiadao.listarGuia()) {
+					comboguia.addItem(g);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
 		

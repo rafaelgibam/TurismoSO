@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import Models.ClienteModel;
+import Models.GuiaModel;
+import Models.LugarModel;
 
 
 public class ClienteDAO extends GenericDAO{
@@ -51,7 +53,7 @@ public class ClienteDAO extends GenericDAO{
 		List<ClienteModel> listadecliente = new ArrayList<>();
 		try {
 		//Query de Pesquisa 
-		String select = "SELECT * FROM cliente";
+		String select = "SELECT nome FROM cliente";
 		
 		//Preparando query para o banco
 		PreparedStatement ptsmt = getConnection().prepareStatement(select);
@@ -65,17 +67,24 @@ public class ClienteDAO extends GenericDAO{
 			ClienteModel cliente = new ClienteModel();
 
 			cliente.setNome(rs.getString("nome"));
-			cliente.getGuia().setId(rs.getInt("lugar_guia_idguia"));
-			cliente.getLugar().setId(rs.getInt("lugar_idlugar"));
 			
-
+			GuiaModel guia = new GuiaModel();
+			guia.setId(rs.getInt("lugar_guia_idguia"));
+			
+			LugarModel lugar = new LugarModel();
+			lugar.setId(rs.getInt("lugar_idlugar"));
+			
+			cliente.setGuia(guia);
+			cliente.setLugar(lugar);
+			
 			listadecliente.add(cliente);
 			
 			// fecha conexao resultset
 			rs.close();
 			// fecha conexao prepareStatement
 			ptsmt.close();
-			
+			//fecha conexão
+			getConnection().close();
 		}
 		
 		}catch(Exception e) {

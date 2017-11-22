@@ -8,7 +8,10 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import Controllers.ClienteController;
 import DAO.ClienteDAO;
+import DAO.GuiaDAO;
 import Models.ClienteModel;
+import Models.GuiaModel;
+import Models.LugarModel;
 
 public class TelaCliente extends JFrame{
 		/**
@@ -16,32 +19,40 @@ public class TelaCliente extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-		String[] colunas = {"Nome","Guia","Lugar","Data Disponivel"};
-		String[] dadoscbl = {"guia1"};
-		String[] dadoscbdv = {"guia1"};
-		
+	JTable tabela;
+	JScrollPane barrarolagem;
+	JPanel jp;
+	JButton addcli;
+	JButton editcli;
+	JButton apagacli;
+	JButton voltar;
+	JLabel lbnomecli;
+	JTextField tfnomecli;
+	JLabel lbguia;
+	JComboBox<GuiaModel> comboguia;
+	JLabel lblugar;
+	JComboBox<LugarModel> combolugar;
+	JLabel lbdataviagem;
+	JComboBox<LugarModel> combodataviagem;
+	DefaultTableModel modelo;
 		
 		void criaTelaCliente(){
-			DefaultTableModel modelo = new DefaultTableModel();
-			modelo.addColumn("Nome do Cliente");
-			modelo.addColumn("Guia");
-			modelo.addColumn("Lugar");
-			modelo.addColumn("Data Disponivel");
-			JTable tabela = new JTable(modelo);
-			JScrollPane barrarolagem = new JScrollPane(tabela);
-			JPanel jp = new JPanel();
-			JButton addcli = new JButton("Adicionar");
-			JButton editcli = new JButton("Editar");
-			JButton apagacli = new JButton("Apagar");
-			JButton voltar = new JButton("Voltar");
-			JLabel lbnomecli = new JLabel("Nome do Cliente");
-			JTextField tfnomecli = new JTextField();
-			JLabel lbguia = new JLabel("Escolha o Guia:");
-			JComboBox<String> comboguia = new JComboBox<String>(dadoscbl);
-			JLabel lblugar = new JLabel("Escolha o Lugar");
-			JComboBox<String> combolugar = new JComboBox<String>(dadoscbl);
-			JLabel lbdataviagem = new JLabel("Data da Viagem:");
-			JComboBox<String> combodataviagem = new JComboBox<String>(dadoscbdv);
+			modelo = new DefaultTableModel();
+			tabela = new JTable(modelo);
+			barrarolagem = new JScrollPane(tabela);
+			jp = new JPanel();
+			addcli = new JButton("Adicionar");
+			editcli = new JButton("Editar");
+			apagacli = new JButton("Apagar");
+			voltar = new JButton("Voltar");
+			lbnomecli = new JLabel("Nome do Cliente");
+			tfnomecli = new JTextField();
+			lbguia = new JLabel("Escolha o Guia:");
+			comboguia = new JComboBox<GuiaModel>();
+			lblugar = new JLabel("Escolha o Lugar");
+			combolugar = new JComboBox<LugarModel>();
+			lbdataviagem = new JLabel("Data da Viagem:");
+			combodataviagem = new JComboBox<LugarModel>();
 		
 			
 			//Setando o modelo da tabela
@@ -135,9 +146,45 @@ public class TelaCliente extends JFrame{
 			setLocationRelativeTo(null);
 			setResizable(false);
 			add(jp);
+			
+			criarTabela();
 		}
 		
+		public void criarTabela(){
+			
+			modelo.addColumn("Id");
+			modelo.addColumn("Nome do Cliente");
+			modelo.addColumn("Guia");
+			modelo.addColumn("Lugar");
+			modelo.addColumn("Data Disponivel");
+			
+			leiaJTable(modelo);
+			
+		}
 		
+		public static void leiaJTable(DefaultTableModel modelo) {
+			
+			modelo.setNumRows(0);
+			
+			try {
+				
+			ClienteDAO clientedao = new ClienteDAO();
+			
+			for (ClienteModel c : clientedao.listarCliente()) {
+				modelo.addRow(new Object[] {
+					c.getId(),
+					c.getNome(),
+					c.getGuia().getNome(),
+					c.getLugar().getNome(),
+					c.getLugar().getDataDisponivel()
+				});
+			}
+			
+			}catch(SQLException ex) {
+				System.out.println("Erro no Listar Tabela!!! "+ex);
+			}
+		}
+	
 		
 		void fechaTelaCliente(){
 			this.dispose();

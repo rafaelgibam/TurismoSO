@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import Models.GuiaModel;
 import Models.LugarModel;
 
 public class LugarDAO extends GenericDAO {
@@ -16,13 +18,13 @@ public class LugarDAO extends GenericDAO {
 
 	// Metodo salvar que salva um objeto no banco
 	public void salvar(LugarModel lugar) throws SQLException {
-		
+
 		// Sql para ser preparado para Statement
-		String adicionalugar = "INSERT INTO lugar(nome,data_disponivel) VALUES(?,?)";
-		
+		String adicionalugar = "INSERT INTO lugar(nome,data_disponivel,guia_idguia) VALUES(?,?,?)";
+
 		// salva o objeto no banco
-		salvar(adicionalugar, lugar.getNome(), lugar.getDataDisponivel(),lugar.getGuia().getId());
-		
+		salvar(adicionalugar, lugar.getNome(), lugar.getDataDisponivel(), lugar.getGuia().getId());
+
 	}
 
 	// Metodo que apaga um objeto do banco
@@ -49,7 +51,7 @@ public class LugarDAO extends GenericDAO {
 
 		// Query de Pesquisa.
 		String sql = "SELECT idlugar,lugar.nome,data_disponivel,guia.nome FROM lugar INNER JOIN guia ON lugar.idlugar = guia.idguia";
-
+	
 		// Preparando query para o banco
 		PreparedStatement ptsmt = getConnection().prepareStatement(sql);
 
@@ -64,7 +66,11 @@ public class LugarDAO extends GenericDAO {
 			lugar.setId(rs.getInt("idlugar"));
 			lugar.setNome(rs.getString("nome"));
 			lugar.setDataDisponivel(rs.getString("data_disponivel"));
-			lugar.setGuiaNome((rs.getString("guia.nome")));
+			
+			GuiaModel guia = new GuiaModel();
+			guia.setNome(rs.getString("guia.nome"));
+			
+			lugar.setGuia(guia);
 
 			listadelugar.add(lugar);
 		}
@@ -72,13 +78,13 @@ public class LugarDAO extends GenericDAO {
 		rs.close();
 		// fecha conexao prepareStatement
 		ptsmt.close();
-
+		
+		//fecha conexao banco
+		getConnection().close();
+		
 		// retorna valores de List<>
 		return listadelugar;
-
-	}
-	
-	
-
+		
+	}	
 
 }
